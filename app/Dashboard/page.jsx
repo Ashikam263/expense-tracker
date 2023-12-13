@@ -237,8 +237,8 @@ const Dashboard = () => {
           {total > 0 ? `+${total}` : total}
         </Typography>
       </Box>
-      <h2 className='text-center mt-5'>Total Income: ${incomeTotal}</h2>
-      <h2 className='text-center mt-5'>Total Expense: ${expenseTotal}</h2>
+      <h2 className='text-center mt-5' color='success'>Total Income: ${incomeTotal}</h2>
+      <h2 className='text-center mt-5' color='error'>Total Expense: ${expenseTotal}</h2>
     </div>
   );
 };
