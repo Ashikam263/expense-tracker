@@ -12,6 +12,7 @@ import { Typography } from '@mui/material';
 import { CardActions } from '@mui/material';
 import { Button } from '@mui/material';
 import ResponsiveDrawer from '../app/components/Sidebar';
+// import {Dashboard, incomeTotal, expenseTotal, total} from '../app/Dashboard/page';
 import Dashboard from '../app/Dashboard/page';
 
 export default function Home() {
@@ -29,7 +30,8 @@ export default function Home() {
                   Current Balance
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  adjective
+                  {/* {total > 0 ? `+${total}` : total} */}
+                  $8200
                 </Typography>
                 <Typography variant="body2">
                   well meaning and kindly.
@@ -49,7 +51,8 @@ export default function Home() {
                   Total Income
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  adjective
+                  {/* ${incomeTotal} */}
+                  $1500
                 </Typography>
                 <Typography variant="body2">
                   well meaning and kindly.
@@ -69,7 +72,8 @@ export default function Home() {
                   Total Expense
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  adjective
+                  {/* ${expenseTotal} */}
+                  $500
                 </Typography>
                 <Typography variant="body2">
                   well meaning and kindly.

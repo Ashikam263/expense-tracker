@@ -243,4 +243,5 @@ const Dashboard = () => {
   );
 };
 
+// export { Dashboard, incomeTotal, expenseTotal, total };
 export default Dashboard;
