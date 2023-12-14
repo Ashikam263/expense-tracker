@@ -17,18 +17,22 @@ import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import TextField from '@mui/material/TextField';
 
 const Dashboard = () => {
   const [showAddDetailsModal, setShowAddDetailsModal] = useState(false);
   const [type, setType] = useState('income');
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('');
   const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState('');
   const [editItem, setEditItem] = useState(null);
   const [description, setDescription] = useState('');
-  const [incomeTotal, setIncomeTotal] = useState(0);
-  const [expenseTotal, setExpenseTotal] = useState(0);
+  const [incomeTotal, setIncomeTotal] = useState('');
+  const [expenseTotal, setExpenseTotal] = useState('');
   const [newDataArray, setNewDataArray] = useState(null);
+  const [searchText, setSearchText] = useState('');
+  const [incomeByCategory, setIncomeByCategory] = useState({});
+  const [expenseByCategory, setExpenseByCategory] = useState({});
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('incomeExpenseData'));
@@ -48,6 +52,30 @@ const Dashboard = () => {
       updateExpenseTotal(newDataArray);
     }
   }, [newDataArray]);  
+
+  useEffect(() => {
+    // Calculate income and expense by category when data changes
+    const calculateByCategory = () => {
+      const incomeCategories = {};
+      const expenseCategories = {};
+
+      data.forEach((item) => {
+        const category = item.type === 'income' ? item.description : item.description;
+        const amount = item.amount;
+
+        if (item.type === 'income') {
+          incomeCategories[category] = (incomeCategories[category] || 0) + amount;
+        } else {
+          expenseCategories[category] = (expenseCategories[category] || 0) + amount;
+        }
+      });
+
+      setIncomeByCategory(incomeCategories);
+      setExpenseByCategory(expenseCategories);
+    };
+
+    calculateByCategory();
+  }, [data]);
 
   const handleEdit = (item) => {
     setEditItem(item);
@@ -74,7 +102,10 @@ const Dashboard = () => {
   };
 
   const handleTypeChange = (event) => setType(event.target.value);
-  const handleAmountChange = (event) => setAmount(Number(event.target.value));
+  const handleAmountChange = (event) => {
+    const inputValue = event.target.value;
+    setAmount(inputValue === '' ? '' : Number(inputValue));
+  };
 
   const updateIncomeTotal = (data) => {
     setIncomeTotal((prevIncomeTotal) => {
@@ -98,6 +129,11 @@ const Dashboard = () => {
     });
   };
 
+  // Filtered data based on the search text
+  const filteredData = data.filter(item =>
+    item.description.toLowerCase().includes(searchText.toLowerCase())
+  );
+  
   const handleSubmit = (event) => {
     event.preventDefault();
   
@@ -131,7 +167,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-     <div className="flex justify-between gap-4 text-center mb-5 text-2xl font-mono">
+     <div className="flex justify-between gap-4 text-center mt-2 text-2xl font-mono">
         <Button color="primary" variant='outlined' onClick={handleAddDetailsClick} className="mb-5">
           Add
         </Button>
@@ -154,32 +190,94 @@ const Dashboard = () => {
                 </Typography>
 
                 <form onSubmit={handleSubmit}>
-                  <Box sx={{ border: '1px solid #ddd', padding: '5px', display: 'flex', justifyContent: 'center' }}>
+                  {/* <Box sx={{ border: '1px solid #ddd', padding: '5px', display: 'flex', justifyContent: 'center' }}>
                     <Select value={type} onChange={handleTypeChange}>
                       <MenuItem value="income">Income</MenuItem>
                       <MenuItem value="expense">Expense</MenuItem>
                     </Select>
-                  </Box>
+                  </Box> */}
                   <br />
-                  <Box sx={{ border: '1px solid #ddd', padding: '5px', display: 'flex', justifyContent: 'center' }}>
-                    <label htmlFor="description" className='p-3'>Description:</label>
+                  <Box sx={{ border: '1px solid #ddd', padding: '5px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <label htmlFor="type" className='p-3'>Type:</label>
+                    <Select
+                      id="type"
+                      value={type}
+                      onChange={handleTypeChange}
+                      style={{ minWidth: '150px', marginBottom: '10px' }}
+                    >
+                      <MenuItem value="income">Income</MenuItem>
+                      <MenuItem value="expense">Expense</MenuItem>
+                    </Select>
+
+                    {type === 'income' ? (
+                      <>
+                        <label htmlFor="incomeDescription" className='p-3'>Income Description:</label>
+                        <Select
+                          id="incomeDescription"
+                          value={description}
+                          onChange={(event) => setDescription(event.target.value)}
+                          style={{ minWidth: '150px', marginBottom: '10px' }}
+                        >
+                          <MenuItem value="Salary">Salary</MenuItem>
+                          <MenuItem value="Profits">Profits</MenuItem>
+                          <MenuItem value="Stocks">Stocks</MenuItem>
+                          <MenuItem value="Royalties">Royalties</MenuItem>
+                          <MenuItem value="Gift">Gift</MenuItem>
+                          <MenuItem value="Bonus">Bonus</MenuItem>
+                          <MenuItem value="Capital Gains">Capital Gains</MenuItem>
+                          {/* Add more income-related menu items as needed */}
+                        </Select>
+                      </>
+                    ) : (
+                      <>
+                        <label htmlFor="expenseDescription" className='p-3'>Expense Description:</label>
+                        <Select
+                          id="expenseDescription"
+                          value={description}
+                          onChange={(event) => setDescription(event.target.value)}
+                          style={{ minWidth: '150px', marginBottom: '10px' }}
+                        >
+                          <MenuItem value="Dues">Dues</MenuItem>
+                          <MenuItem value="Rent">Rent</MenuItem>
+                          <MenuItem value="Food">Food</MenuItem>
+                          <MenuItem value="Transportation">Transportation</MenuItem>
+                          <MenuItem value="Losses">Losses</MenuItem>
+                          <MenuItem value="Emergencies">Emergencies</MenuItem>
+                          <MenuItem value="Bills">Bills</MenuItem>
+                          <MenuItem value="Taxes">Taxes</MenuItem>
+                          {/* Add more expense-related menu items as needed */}
+                        </Select>
+                      </>
+                    )}
+
                     <input
                       type="text"
-                      id="description"
-                      placeholder="Enter Description"
+                      placeholder="Enter additional details"
                       value={description}
                       onChange={(event) => setDescription(event.target.value)}
+                      style={{ marginBottom: '10px' }}
                     />
+
+                    {/* <Button color="primary" type="submit">
+                      Save
+                    </Button> */}
                   </Box>
+
+
                   <br />
                   <Box sx={{ border: '1px solid #ddd', padding: '5px', display: 'flex', justifyContent: 'center' }}>
                     <label htmlFor="amount" className='p-3'>Amount:</label>
                     <input
-                      type="number"
+                      type="text"  // Use text type instead of number to allow custom validation
                       id="amount"
                       placeholder="Enter Amount"
                       value={amount}
                       onChange={handleAmountChange}
+                      onKeyDown={(e) => {
+                        if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                          e.preventDefault();
+                        }
+                      }}
                     />
                   </Box>
                   <br />
@@ -193,8 +291,16 @@ const Dashboard = () => {
               </Box>
             </Modal>
       )}
-
-      {data.length > 0 && (
+      <TextField
+        id="standard-basic"
+        label="Search" variant="outlined"
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        fullWidth
+        size="small" 
+        className=""
+      />
+      {filteredData.length > 0 && (
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 550 }} aria-label="simple table">
           <TableHead>
@@ -209,7 +315,7 @@ const Dashboard = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((item) => (
+            {filteredData.map((item) => (
               <TableRow className=':last-child > td, :last-child > th { border-0 }' key={item.amount}>
                 <TableCell component="th" scope="row">
                   {item.type}
@@ -237,8 +343,41 @@ const Dashboard = () => {
           {total > 0 ? `+${total}` : total}
         </Typography>
       </Box>
-      <h2 className='text-center mt-5' color='success'>Total Income: ${incomeTotal}</h2>
-      <h2 className='text-center mt-5' color='error'>Total Expense: ${expenseTotal}</h2>
+      
+      <div className='flex gap-5'>
+        <Box className='bg-green-200' sx={{padding: '10px', textAlign: 'center', marginTop: '5px' }}>
+          <h2>Total Income: ${incomeTotal}</h2>
+        </Box>
+
+        <Box className='bg-red-300' sx={{padding: '10px', textAlign: 'center', marginTop: '5px' }}>
+          <h2>Total Expense: ${expenseTotal}</h2>
+        </Box>
+      </div>
+
+      <Box className='flex justify-center gap-10' variant='outlined'>
+        {/* Display income by category */}
+        <div>
+          <h2 className='text-center mt-5 text-success'>Incomes:</h2>
+          {Object.entries(incomeByCategory).map(([category, amount]) => (
+            <div key={category} className="text-center">
+              <span>{category}:</span>
+              <span>${amount}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Display expense by category */}
+        <div>
+          <h2 className='text-center mt-5 text-error' >Expenses:</h2>
+          {Object.entries(expenseByCategory).map(([category, amount]) => (
+            <div key={category} className="text-center">
+              <span>{category}:</span>
+              <span>${amount}</span>
+            </div>
+          ))}
+        </div>
+      </Box>
+
     </div>
   );
 };

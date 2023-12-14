@@ -15,6 +15,7 @@ import ResponsiveDrawer from '../app/components/Sidebar';
 // import {Dashboard, incomeTotal, expenseTotal, total} from '../app/Dashboard/page';
 import Dashboard from '../app/Dashboard/page';
 
+
 export default function Home() {
   return (
     <div>
@@ -24,66 +25,51 @@ export default function Home() {
       <div style={{marginLeft: '180px', padding: '16px', marginTop: '64px' }}>
         <Grid container spacing={2} sx={{ margin: '0 -8px' }}>
           <Grid item xs={12} sm={6} md={2}>
-            <Card sx={{ minWidth: 200 }}>
+            <Card sx={{ minWidth: 180 }} className='bg-emerald-100 text-white'> 
               <CardContent>
                 <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
                   Current Balance
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                <Typography sx={{ mb: 1.5, fontSize: 22 }} color="text.secondary">
                   {/* {total > 0 ? `+${total}` : total} */}
                   $8200
                 </Typography>
-                <Typography variant="body2">
-                  well meaning and kindly.
-                  <br />
-                  {'"a benevolent smile"'}
+                <Typography variant="body2" style={{ fontSize: 'larger', color: 'green' }}>
+                  32%
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
-            <Card sx={{ minWidth: 200 }}>
+            <Card sx={{ minWidth: 180 }} className='bg-rose-100 '>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
                   Total Income
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                <Typography sx={{ mb: 1.5,  fontSize: 22}} color="text.secondary">
                   {/* ${incomeTotal} */}
                   $1500
                 </Typography>
-                <Typography variant="body2">
-                  well meaning and kindly.
-                  <br />
-                  {'"a benevolent smile"'}
+                <Typography variant="body2" style={{ fontSize: 'larger', color: 'green' }}>
+                  18%
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={2}>
-            <Card sx={{ minWidth: 200 }}>
+            <Card sx={{ minWidth: 180 }} className='bg-blue-100'>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
                   Total Expense
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  {/* ${expenseTotal} */}
-                  $500
+                <Typography sx={{ mb: 1.5,  fontSize: 22}} color="text.secondary">
+                  {/* ${incomeTotal} */}
+                  $1500
                 </Typography>
-                <Typography variant="body2">
-                  well meaning and kindly.
-                  <br />
-                  {'"a benevolent smile"'}
+                <Typography variant="body2" style={{ fontSize: 'larger', color: 'red' }}>
+                  21%
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
             </Card>
           </Grid>
           <Grid container item xs={12} sm={6} md={1}>

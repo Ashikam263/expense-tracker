@@ -34,8 +34,8 @@ function ResponsiveDrawer(props) {
   const icons = [<DashboardIcon />,<CreditScoreIcon />,<AddCardIcon />,<PersonIcon />,<NotificationsActiveIcon />,<SettingsIcon />];
   
   const drawer = (
-    <div className='flex flex-col items-center justify-center h-screen'>
-      <Button href='/' className='flex flex-row justify-center text-xl'><NotificationsIcon/> EXTRACK</Button>
+    <div className='flex flex-col items-center justify-center h-screen bg-violet-900'>
+      <Button href='/' className='flex flex-row justify-center text-xl text-white'><NotificationsIcon sx={{ fontSize: 40 }}/> EXTRACK</Button>
       <Toolbar />
       <Divider />
       <List>
@@ -43,10 +43,10 @@ function ResponsiveDrawer(props) {
           <ListItem key={text} disablePadding >
             <Link href={`/${text}`}>
               <ListItemButton>
-                <ListItemIcon>
+                <ListItemIcon className='text-white'>
                 {icons[index]}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={text} className='text-white' />
               </ListItemButton>
             </Link>
           </ListItem>
