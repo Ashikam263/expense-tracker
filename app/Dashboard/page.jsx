@@ -168,11 +168,11 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col justify-center items-center">
      <div className="flex justify-between gap-4 text-center mt-2 text-2xl font-mono">
+        <h1 className={data.length > 0 ? 'hidden' : ''}>No data available</h1>
+        <h1 className={data.length > 0 ? '' : 'hidden'}>List of Income & Expense</h1>
         <Button color="primary" variant='outlined' onClick={handleAddDetailsClick} className="mb-5">
           Add
         </Button>
-        <h1 className={data.length > 0 ? 'hidden' : ''}>No data available</h1>
-        <h1 className={data.length > 0 ? '' : 'hidden'}>List of Income & Expense</h1>
       </div>
 
       {showAddDetailsModal && (
@@ -301,40 +301,42 @@ const Dashboard = () => {
         className=""
       />
       {filteredData.length > 0 && (
-        <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 550 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Type</TableCell>
-              <TableCell align="right">Description</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Time</TableCell>
-              <TableCell align="right">Edit</TableCell>
-              <TableCell align="right">Delete</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredData.map((item) => (
-              <TableRow className=':last-child > td, :last-child > th { border-0 }' key={item.amount}>
-                <TableCell component="th" scope="row">
-                  {item.type}
-                </TableCell>
-                <TableCell align="right">{item.description}</TableCell>
-                <TableCell align="right">${item.amount}</TableCell>
-                <TableCell align="right">{item.date}</TableCell>
-                <TableCell align="right">{item.time}</TableCell>
-                <TableCell align="right">
-                  <IconButton variant="outlined" color='primary' onClick={() => handleEdit(item)}><EditIcon/></IconButton>
-                </TableCell>
-                <TableCell align="right">
-                  <IconButton aria-label='delete' variant="outlined" color="error" onClick={() => handleDelete(item)}><DeleteIcon /></IconButton>
-                </TableCell>
+        <div style={{ flex: 1 }} className="w-full h-full">
+          <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Type</TableCell>
+                <TableCell align="right">Description</TableCell>
+                <TableCell align="right">Amount</TableCell>
+                <TableCell align="right">Date</TableCell>
+                <TableCell align="right">Time</TableCell>
+                <TableCell align="right">Edit</TableCell>
+                <TableCell align="right">Delete</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        </TableContainer>
+            </TableHead>
+            <TableBody>
+              {filteredData.map((item) => (
+                <TableRow className=':last-child > td, :last-child > th { border-0 }' key={item.amount}>
+                  <TableCell component="th" scope="row">
+                    {item.type}
+                  </TableCell>
+                  <TableCell align="right">{item.description}</TableCell>
+                  <TableCell align="right">${item.amount}</TableCell>
+                  <TableCell align="right">{item.date}</TableCell>
+                  <TableCell align="right">{item.time}</TableCell>
+                  <TableCell align="right">
+                    <IconButton variant="outlined" color='primary' onClick={() => handleEdit(item)}><EditIcon/></IconButton>
+                  </TableCell>
+                  <TableCell align="right">
+                    <IconButton aria-label='delete' variant="outlined" color="error" onClick={() => handleDelete(item)}><DeleteIcon /></IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          </TableContainer>
+        </div>
       )}
       <br/>
       <Box sx={{ border: '1px solid #ddd', padding: '5px', display: 'flex', justifyContent: 'center' }}>

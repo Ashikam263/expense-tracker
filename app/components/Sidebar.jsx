@@ -34,9 +34,8 @@ function ResponsiveDrawer(props) {
   const icons = [<DashboardIcon />,<CreditScoreIcon />,<AddCardIcon />,<PersonIcon />,<NotificationsActiveIcon />,<SettingsIcon />];
   
   const drawer = (
-    <div className='flex flex-col items-center justify-center h-screen bg-violet-900'>
-      <Button href='/' className='flex flex-row justify-center text-xl text-white'><NotificationsIcon sx={{ fontSize: 40 }}/> EXTRACK</Button>
-      <Toolbar />
+    <div className='flex flex-col h-screen bg-violet-900 mt-0'>
+      <Button href='/' className='flex flex-row justify-center text-xl text-white mt-0'><NotificationsIcon sx={{ fontSize: 60 }}/> EXTRACK</Button>
       <Divider />
       <List>
         {['Dashboard', 'Transactions', 'Cards', 'Account', 'Notifications', 'Settings'].map((text, index) => (

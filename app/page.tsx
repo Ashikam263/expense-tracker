@@ -15,16 +15,16 @@ import ResponsiveDrawer from '../app/components/Sidebar';
 // import {Dashboard, incomeTotal, expenseTotal, total} from '../app/Dashboard/page';
 import Dashboard from '../app/Dashboard/page';
 
-
 export default function Home() {
   return (
     <div>
       <Navbar />
+      <div style={{ display: 'flex' }}>
       <ResponsiveDrawer />
 
-      <div style={{marginLeft: '180px', padding: '16px', marginTop: '64px' }}>
+      <div style={{flex: 1, padding: '16px', marginTop: '64px' }}>
         <Grid container spacing={2} sx={{ margin: '0 -8px' }}>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={4}>
             <Card sx={{ minWidth: 180 }} className='bg-emerald-100 text-white'> 
               <CardContent>
                 <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
@@ -40,7 +40,7 @@ export default function Home() {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={4}>
             <Card sx={{ minWidth: 180 }} className='bg-rose-100 '>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
@@ -56,7 +56,7 @@ export default function Home() {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={4}>
             <Card sx={{ minWidth: 180 }} className='bg-blue-100'>
               <CardContent>
                 <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
@@ -72,14 +72,19 @@ export default function Home() {
               </CardContent>
             </Card>
           </Grid>
-          <Grid container item xs={12} sm={6} md={1}>
-            <Dashboard />
-          </Grid>
         </Grid>
+
+        <div style={{ flex: 1 }}>
+          <Dashboard />
+        </div>
+{/* 
+        <Grid container item xs={12} sm={6} md={4} className=''>
+          <Dashboard />
+        </Grid> */}
       </div>
 
 
-
+      </div>
     </div>
   );
 }
