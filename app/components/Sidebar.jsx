@@ -39,7 +39,7 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {['Dashboard', 'Transactions', 'Cards', 'Account', 'Notifications', 'Settings'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem key={index} disablePadding>
             <Link href={`/${text}`}>
               <ListItemButton>
                 <ListItemIcon className='text-white'>
@@ -51,6 +51,7 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
+
     </div>
   );
 
