@@ -15,6 +15,7 @@ import ResponsiveDrawer from '../app/components/Sidebar';
 // import {Dashboard, incomeTotal, expenseTotal, total} from '../app/Dashboard/page';
 import Dashboard from '../app/Dashboard/page';
 
+
 export default function Home() {
   return (
     <div>
