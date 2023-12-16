@@ -77,10 +77,6 @@ export default function Home() {
         <div style={{ flex: 1 }}>
           <Dashboard />
         </div>
-{/* 
-        <Grid container item xs={12} sm={6} md={4} className=''>
-          <Dashboard />
-        </Grid> */}
       </div>
 
 
