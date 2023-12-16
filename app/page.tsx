@@ -13,7 +13,9 @@ import { CardActions } from '@mui/material';
 import { Button } from '@mui/material';
 import ResponsiveDrawer from '../app/components/Sidebar';
 // import {Dashboard, incomeTotal, expenseTotal, total} from '../app/Dashboard/page';
-import Dashboard from '../app/Dashboard/page';
+// import Dashboard from '../app/Dashboard/page';
+import { Dashboard, incomeByCategory, expenseByCategory } from '../app/Dashboard/page';
+
 
 export default function Home() {
   return (

@@ -385,4 +385,5 @@ const Dashboard = () => {
 };
 
 // export { Dashboard, incomeTotal, expenseTotal, total };
-export default Dashboard;
+// export default Dashboard;
+export { Dashboard, incomeByCategory, expenseByCategory };
