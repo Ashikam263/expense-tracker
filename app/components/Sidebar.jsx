@@ -37,6 +37,7 @@ function ResponsiveDrawer(props) {
     <div className='flex flex-col h-screen bg-violet-900 mt-0'>
       <Button href='/' className='flex flex-row justify-center text-xl text-white mt-0'><NotificationsIcon sx={{ fontSize: 60 }}/> EXTRACK</Button>
       <Divider />
+      /* eslint-disable react/jsx-key */
       <List>
         {['Dashboard', 'Transactions', 'Cards', 'Account', 'Notifications', 'Settings'].map((text, index) => (
           <ListItem key={index} disablePadding>
@@ -51,7 +52,7 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
-
+      /* eslint-enable react/jsx-key */
     </div>
   );
 
