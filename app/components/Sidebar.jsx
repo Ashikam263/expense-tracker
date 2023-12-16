@@ -32,25 +32,31 @@ function ResponsiveDrawer(props) {
   };
 
   const icons = [<DashboardIcon />,<CreditScoreIcon />,<AddCardIcon />,<PersonIcon />,<NotificationsActiveIcon />,<SettingsIcon />];
-  
+  const drawerItems = [
+    { label: 'Dashboard', index: 0 },
+    { label: 'Transactions', index: 1 },
+    { label: 'Cards', index: 2 },
+    { label: 'Account', index: 3 },
+    { label: 'Notifications', index: 4 },
+    { label: 'Settings', index: 5 },
+  ];
+
   const drawer = (
     <div className='flex flex-col h-screen bg-violet-900 mt-0'>
       <Button href='/' className='flex flex-row justify-center text-xl text-white mt-0'><NotificationsIcon sx={{ fontSize: 60 }}/> EXTRACK</Button>
       <Divider />
       /* eslint-disable react/jsx-key */
       <List>
-        {['Dashboard', 'Transactions', 'Cards', 'Account', 'Notifications', 'Settings'].map((text, index) => (
-          <ListItem key={index} disablePadding>
-            <Link href={`/${text}`}>
-              <ListItemButton>
-                <ListItemIcon className='text-white'>
-                  {icons[index]}
-                </ListItemIcon>
-                <ListItemText primary={text} className='text-white' />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        ))}
+      {drawerItems.map(({ label, index }) => (
+        <ListItem key={index} disablePadding>
+          <Link href={`/${label}`}>
+            <ListItemButton>
+              <ListItemIcon className='text-white'>{icons[index]}</ListItemIcon>
+              <ListItemText primary={label} className='text-white' />
+            </ListItemButton>
+          </Link>
+        </ListItem>
+      ))}
       </List>
       /* eslint-enable react/jsx-key */
     </div>
