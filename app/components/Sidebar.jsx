@@ -36,7 +36,7 @@ function ResponsiveDrawer(props) {
       <Button href='/' className='flex flex-row justify-center text-xl text-white mt-0'><NotificationsIcon sx={{ fontSize: 60 }}/> EXTRACK</Button>
       <Divider />
       <List>
-      <ListItem disablePadding>
+      <ListItem key="Dashboard" disablePadding>
         <a href="/Dashboard" className='text-white'>
           <ListItemButton>
             <ListItemIcon><DashboardIcon className= 'text-white' /></ListItemIcon>
@@ -45,7 +45,7 @@ function ResponsiveDrawer(props) {
         </a>
       </ListItem>
 
-      <ListItem disablePadding>
+      <ListItem key='Transactions' disablePadding>
         <a href="/Transactions" className='text-white'>
           <ListItemButton>
             <ListItemIcon><CreditScoreIcon className= 'text-white' /></ListItemIcon>
@@ -54,7 +54,7 @@ function ResponsiveDrawer(props) {
         </a>
       </ListItem>
 
-      <ListItem disablePadding>
+      <ListItem key='Cards' disablePadding>
         <a href="/Cards" className='text-white'>
           <ListItemButton>
             <ListItemIcon ><AddCardIcon className= 'text-white' /></ListItemIcon>
@@ -63,7 +63,7 @@ function ResponsiveDrawer(props) {
         </a>
       </ListItem>
 
-      <ListItem disablePadding>
+      <ListItem key='Account' disablePadding>
         <a href="/Account" className='text-white'>
           <ListItemButton>
             <ListItemIcon><PersonIcon className= 'text-white' /></ListItemIcon>
@@ -72,7 +72,7 @@ function ResponsiveDrawer(props) {
         </a>
       </ListItem>
 
-      <ListItem disablePadding>
+      <ListItem key='Notifications' disablePadding>
         <a href="/Notifications" className='text-white'>
           <ListItemButton>
             <ListItemIcon><NotificationsActiveIcon className= 'text-white' /></ListItemIcon>
@@ -81,7 +81,7 @@ function ResponsiveDrawer(props) {
         </a>
       </ListItem>
 
-      <ListItem disablePadding>
+      <ListItem key='Settings' disablePadding>
         <a href="/Settings" className='text-white'>
           <ListItemButton>
             <ListItemIcon><SettingsIcon className= 'text-white' /></ListItemIcon>
