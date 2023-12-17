@@ -31,66 +31,61 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const icons = [<DashboardIcon />,<CreditScoreIcon />,<AddCardIcon />,<PersonIcon />,<NotificationsActiveIcon />,<SettingsIcon />];
-  const drawerItems = [
-    { label: 'Dashboard', index: 0 },
-    { label: 'Transactions', index: 1 },
-    { label: 'Cards', index: 2 },
-    { label: 'Account', index: 3 },
-    { label: 'Notifications', index: 4 },
-    { label: 'Settings', index: 5 },
-  ];
-
   const drawer = (
     <div className='flex flex-col h-screen bg-violet-900 mt-0'>
       <Button href='/' className='flex flex-row justify-center text-xl text-white mt-0'><NotificationsIcon sx={{ fontSize: 60 }}/> EXTRACK</Button>
       <Divider />
       <List>
       <ListItem disablePadding>
-        <a href={`/${drawerItems[0].label}`} className='text-white'>
+        <a href="/Dashboard" className='text-white'>
           <ListItemButton>
-            <ListItemIcon>{icons[0]}</ListItemIcon>
-            <ListItemText primary={drawerItems[0].label} />
+            <ListItemIcon><DashboardIcon className= 'text-white' /></ListItemIcon>
+            <ListItemText primary="Dashboard" />
           </ListItemButton>
         </a>
       </ListItem>
+
       <ListItem disablePadding>
-        <a href={`/${drawerItems[1].label}`} className='text-white'>
+        <a href="/Transactions" className='text-white'>
           <ListItemButton>
-            <ListItemIcon>{icons[1]}</ListItemIcon>
-            <ListItemText primary={drawerItems[1].label} />
+            <ListItemIcon><CreditScoreIcon className= 'text-white' /></ListItemIcon>
+            <ListItemText primary="Transactions" />
           </ListItemButton>
         </a>
       </ListItem>
+
       <ListItem disablePadding>
-        <a href={`/${drawerItems[2].label}`} className='text-white'>
+        <a href="/Cards" className='text-white'>
           <ListItemButton>
-            <ListItemIcon>{icons[2]}</ListItemIcon>
-            <ListItemText primary={drawerItems[2].label} />
+            <ListItemIcon ><AddCardIcon className= 'text-white' /></ListItemIcon>
+            <ListItemText primary="Cards" />
           </ListItemButton>
         </a>
       </ListItem>
+
       <ListItem disablePadding>
-        <a href={`/${drawerItems[3].label}`} className='text-white'>
+        <a href="/Account" className='text-white'>
           <ListItemButton>
-            <ListItemIcon>{icons[3]}</ListItemIcon>
-            <ListItemText primary={drawerItems[3].label} />
+            <ListItemIcon><PersonIcon className= 'text-white' /></ListItemIcon>
+            <ListItemText primary="Account" />
           </ListItemButton>
         </a>
       </ListItem>
+
       <ListItem disablePadding>
-        <a href={`/${drawerItems[4].label}`} className='text-white'>
+        <a href="/Notifications" className='text-white'>
           <ListItemButton>
-            <ListItemIcon>{icons[4]}</ListItemIcon>
-            <ListItemText primary={drawerItems[4].label} />
+            <ListItemIcon><NotificationsActiveIcon className= 'text-white' /></ListItemIcon>
+            <ListItemText primary="Notifications" />
           </ListItemButton>
         </a>
       </ListItem>
+
       <ListItem disablePadding>
-        <a href={`/${drawerItems[5].label}`} className='text-white'>
+        <a href="/Settings" className='text-white'>
           <ListItemButton>
-            <ListItemIcon>{icons[5]}</ListItemIcon>
-            <ListItemText primary={drawerItems[5].label} />
+            <ListItemIcon><SettingsIcon className= 'text-white' /></ListItemIcon>
+            <ListItemText primary="Settings" />
           </ListItemButton>
         </a>
       </ListItem>
