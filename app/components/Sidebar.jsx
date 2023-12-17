@@ -45,20 +45,56 @@ function ResponsiveDrawer(props) {
     <div className='flex flex-col h-screen bg-violet-900 mt-0'>
       <Button href='/' className='flex flex-row justify-center text-xl text-white mt-0'><NotificationsIcon sx={{ fontSize: 60 }}/> EXTRACK</Button>
       <Divider />
-      /* eslint-disable react/jsx-key */
       <List>
-      {drawerItems.map(({ label, index }) => (
-        <ListItem key={index} disablePadding>
-          <Link href={`/${label}`}>
-            <ListItemButton>
-              <ListItemIcon className='text-white'>{icons[index]}</ListItemIcon>
-              <ListItemText primary={label} className='text-white' />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-      ))}
-      </List>
-      /* eslint-enable react/jsx-key */
+      <ListItem disablePadding>
+        <a href={`/${drawerItems[0].label}`} className='text-white'>
+          <ListItemButton>
+            <ListItemIcon>{icons[0]}</ListItemIcon>
+            <ListItemText primary={drawerItems[0].label} />
+          </ListItemButton>
+        </a>
+      </ListItem>
+      <ListItem disablePadding>
+        <a href={`/${drawerItems[1].label}`} className='text-white'>
+          <ListItemButton>
+            <ListItemIcon>{icons[1]}</ListItemIcon>
+            <ListItemText primary={drawerItems[1].label} />
+          </ListItemButton>
+        </a>
+      </ListItem>
+      <ListItem disablePadding>
+        <a href={`/${drawerItems[2].label}`} className='text-white'>
+          <ListItemButton>
+            <ListItemIcon>{icons[2]}</ListItemIcon>
+            <ListItemText primary={drawerItems[2].label} />
+          </ListItemButton>
+        </a>
+      </ListItem>
+      <ListItem disablePadding>
+        <a href={`/${drawerItems[3].label}`} className='text-white'>
+          <ListItemButton>
+            <ListItemIcon>{icons[3]}</ListItemIcon>
+            <ListItemText primary={drawerItems[3].label} />
+          </ListItemButton>
+        </a>
+      </ListItem>
+      <ListItem disablePadding>
+        <a href={`/${drawerItems[4].label}`} className='text-white'>
+          <ListItemButton>
+            <ListItemIcon>{icons[4]}</ListItemIcon>
+            <ListItemText primary={drawerItems[4].label} />
+          </ListItemButton>
+        </a>
+      </ListItem>
+      <ListItem disablePadding>
+        <a href={`/${drawerItems[5].label}`} className='text-white'>
+          <ListItemButton>
+            <ListItemIcon>{icons[5]}</ListItemIcon>
+            <ListItemText primary={drawerItems[5].label} />
+          </ListItemButton>
+        </a>
+      </ListItem>
+    </List>
     </div>
   );
 
